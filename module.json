@@ -1,0 +1,12 @@
+{
+    "id": "iframe",
+    "name": "Iframe",
+    "description": "(Nearly) fullscreen iframes",
+    "keywords": [
+    ],
+    "version": "0.1",
+    "humhub": {
+        "minVersion": "1.2"
+    },
+    "screenshots": ["assets/screen1.jpg", "assets/screen2.jpg", "assets/screen3.jpg"]
+}
