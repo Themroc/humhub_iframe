@@ -34,7 +34,7 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 		],
 		'size'=> [
 			'rules'=> ['in', 'range'=> [0, 1]],
-			'form'=> ['type'=> 'radio', 'params'=> [self::class, 'sizeModes']],
+			'form'=> ['type'=> 'radio', 'items'=> [self::class, 'sizeModes']],
 		],
 		'url'=> [
 			'label'=> 'Page URL',
