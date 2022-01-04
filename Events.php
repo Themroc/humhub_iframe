@@ -19,7 +19,7 @@ class Events
 			$prefix= $f.'/';
 			$label= $mod->getSetting('label', $f);
 			$event->sender->addItem([
-				'icon'=> '<i class="fa '.$mod->getSetting($prefix.'icon').'"></i>',
+				'icon'=> '<i class="fa fa-'.$mod->getSetting($prefix.'icon').'"></i>',
 				'label'=> $label,
 				'url'=> $mod->getUrl('index', ['frame'=> $label]),
 				'sortOrder'=> $mod->getSetting('sort', $f),
