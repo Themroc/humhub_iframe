@@ -6,7 +6,9 @@ themroc\humhub\modules\iframe\assets\Assets::register($this);
 
 $frame= Yii::$app->request->get('frame');
 $mod= Yii::$app->getModule('iframe');
-$url= $mod->getSetting('url', $frame);
+$url= $mod->getSetting('url_reg', $frame);
+if (empty($url) || Yii::$app->user->isGuest)
+	$url= $mod->getSetting('url', $frame);
 
 $js= [];
 foreach ($mod->getFrames() as $f)

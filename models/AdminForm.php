@@ -17,6 +17,7 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 	public $sort;
 	public $size;
 	public $url;
+	public $url_reg;
 
 	protected $vars= [
 		'label'=> [
@@ -39,6 +40,10 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 		'url'=> [
 			'label'=> 'Page URL',
 			'hints'=> 'The webpage to be shown',
+		],
+		'url_reg'=> [
+			'label'=> 'Page URL for registered users',
+			'hints'=> 'If empty, the above will be used',
 		],
 	];
 
