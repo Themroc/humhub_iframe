@@ -35,26 +35,31 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 		],
 		'size'=> [
 			'rules'=> ['in', 'range'=> [0, 1]],
-			'form'=> ['type'=> 'radio', 'items'=> [self::class, 'sizeModes']],
+			'form'=> [
+				'type'=> 'radio',
+				'items'=> [self::class, 'sizeModes']
+			],
 		],
 		'url'=> [
 			'label'=> 'Page URL',
-			'hints'=> 'The webpage to be shown',
+			'hints'=> 'The webpage to be shown. @UID@, @USER@ and @EMAIL@ will be replaced by the respective values.',
 		],
 		'url_reg'=> [
 			'label'=> 'Page URL for registered users',
-			'hints'=> 'If empty, the above will be used',
+			'hints'=> 'If empty, the above will be used.',
 		],
 	];
 
 	protected $mod= [
-		'form'=> ['btn_post'=> [self::class, 'deleteButton']],
+		'form'=> [
+			'btn_post'=> [self::class, 'deleteButton']
+		],
 	];
 
 	/**
 	 * @inheritdoc
 	 */
-	public function save()
+	public function save ()
 	{
 		$frame= strtolower($this->label);
 		$this->mod['prefix']= $frame.'/';
@@ -73,7 +78,7 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 		return $this->loadSettings();
 	}
 
-	public function deleteButton($model)
+	public function deleteButton ($model)
 	{
 		return strlen($model->label)
 			? "\t\t\t".Html::a(
@@ -83,7 +88,7 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 			: "";
 	}
 
-	public function sizeModes()
+	public function sizeModes ()
 	{
 		return [
 			0=> Yii::t('IframeModule.base', 'Box'),
