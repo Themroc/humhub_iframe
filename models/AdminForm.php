@@ -16,8 +16,10 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 	public $label;
 	public $sort;
 	public $size;
+	public $guest;
 	public $url;
 	public $url_reg;
+	public $top_data;
 
 	protected $vars= [
 		'label'=> [
@@ -34,10 +36,18 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 			'hints'=> 'Determines topbar menu position',
 		],
 		'size'=> [
+			'prefix'=> '<style>.regular-radio-container{display:inline !important}</style>',
 			'rules'=> ['in', 'range'=> [0, 1]],
 			'form'=> [
 				'type'=> 'radio',
 				'items'=> [self::class, 'sizeModes']
+			],
+		],
+		'guest'=> [
+			'label'=> 'Visible for guests',
+			'rules'=> ['in', 'range'=> [0, 1]],
+			'form'=> [
+				'type'=> 'checkbox',
 			],
 		],
 		'url'=> [
@@ -47,6 +57,9 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 		'url_reg'=> [
 			'label'=> 'Page URL for registered users',
 			'hints'=> 'If empty, the above will be used.',
+		],
+		'top_data'=> [
+			'label'=> 'HTML to add above the iframe',
 		],
 	];
 
