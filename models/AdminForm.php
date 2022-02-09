@@ -51,11 +51,11 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 			],
 		],
 		'url'=> [
-			'label'=> 'Page URL',
-			'hints'=> 'The webpage to be shown. @UID@, @USER@ and @EMAIL@ will be replaced by the respective values.',
+			'label'=> 'URL',
+			'hints'=> 'The webpage to be shown. @UID@, @USER@, @EMAIL@ and @COLOR@ will be replaced by the respective values.',
 		],
 		'url_reg'=> [
-			'label'=> 'Page URL for registered users',
+			'label'=> 'URL for registered users',
 			'hints'=> 'If empty, the above will be used.',
 		],
 		'top_data'=> [
