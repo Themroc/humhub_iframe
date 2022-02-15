@@ -9,15 +9,20 @@ class IndexController extends Controller
 {
 	public $subLayout = "@iframe/views/layouts/default";
 
-	public function actionIndex()
+	public function actionIndex ()
 	{
 		$mod= Yii::$app->getModule('iframe');
-		$uid= Yii::$app->user->id;
+		$mod->update();
 		$frame= Yii::$app->request->get('frame');
+		if (Yii::$app->user->isGuest && !$mod->getSetting('guest', $frame))
+			return $this->render('error', [ 'msg'=> 'Sorry, guests are not allowed here.']);
+
+		$uid= Yii::$app->user->id;
 		$top_data= $mod->getSetting('top_data', $frame);
-		$url= $mod->getSetting('url_reg', $frame);
-		if (empty($url) || Yii::$app->user->isGuest)
-			$url= $mod->getSetting('url', $frame);
+		if (Yii::$app->user->isGuest)
+			$url= $mod->getSetting('url_guest', $frame);
+		if (empty($url))
+			$url= $mod->getSetting('url_reg', $frame);
 
 		if (Yii::$app->user->isGuest) {
 			$user= Yii::$app->request->userIP;

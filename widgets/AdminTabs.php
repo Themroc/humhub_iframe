@@ -15,7 +15,7 @@ class AdminTabs extends \humhub\widgets\BaseMenu
 	 */
 	public $template = "@humhub/widgets/views/tabMenu";
 
-	public function init()
+	public function init ()
 	{
 		$controller= Yii::$app->controller;
 		$frame= Yii::$app->request->get('frame');

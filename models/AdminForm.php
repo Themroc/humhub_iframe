@@ -17,8 +17,8 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 	public $sort;
 	public $size;
 	public $guest;
-	public $url;
 	public $url_reg;
+	public $url_guest;
 	public $top_data;
 
 	protected $vars= [
@@ -43,6 +43,10 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 				'items'=> [self::class, 'sizeModes']
 			],
 		],
+		'url_reg'=> [
+			'label'=> 'URL for registered users',
+			'hints'=> 'The webpage to be shown. @UID@, @USER@, @EMAIL@ and @COLOR@ will be replaced by the respective values.',
+		],
 		'guest'=> [
 			'label'=> 'Visible for guests',
 			'rules'=> ['in', 'range'=> [0, 1]],
@@ -50,13 +54,13 @@ class AdminForm extends \themroc\humhub\modules\modhelper\models\AdminForm
 				'type'=> 'checkbox',
 			],
 		],
-		'url'=> [
-			'label'=> 'URL',
-			'hints'=> 'The webpage to be shown. @UID@, @USER@, @EMAIL@ and @COLOR@ will be replaced by the respective values.',
-		],
-		'url_reg'=> [
-			'label'=> 'URL for registered users',
+		'url_guest'=> [
+#		'url'=> [
+			'label'=> 'URL for guests',
 			'hints'=> 'If empty, the above will be used.',
+			'form'=> [
+				'visible'=> ['guest'=> 1],
+			],
 		],
 		'top_data'=> [
 			'label'=> 'HTML to add above the iframe',

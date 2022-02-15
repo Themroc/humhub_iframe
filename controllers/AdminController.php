@@ -8,30 +8,38 @@ use themroc\humhub\modules\iframe\models\AdminForm;
 
 class AdminController extends Controller
 {
+	const MH_MIN_REL= '0.2.1';
+
 	public $adminOnly= true;
 	public $subLayout= '@iframe/views/layouts/admin';
 
-	public function init()
+	public function init ()
 	{
-		if (Yii::$app->getModule('mod-helper')===null)
+		if (null == $mod= Yii::$app->getModule('mod-helper'))
+			$this->subLayout= null;
+		if (version_compare($mod->getVersion(), self::MH_MIN_REL) < 0)
 			$this->subLayout= null;
 
 		return parent::init();
 	}
+
 
 	/**
 	 * Render admin only page
 	 *
 	 * @return string
 	 */
-	public function actionIndex()
+	public function actionIndex ()
 	{
 		if ($this->subLayout===null)
 			return $this->render('error', [
-				'msg'=> 'Please install and activate the <a href="https://github.com/Themroc/humhub_mod-helper" target="_blank">Mod-Helper plugin</a>.',
+				'msg'=> 'Please install and activate the'
+					.' <a href="https://github.com/Themroc/humhub_mod-helper" target="_blank">Mod-Helper plugin</a>,'
+					.' at least version '.self::MH_MIN_REL.'.',
 			]);
 
 		$mod= Yii::$app->getModule('iframe');
+		$mod->update();
 		$frame= Yii::$app->request->get('frame');
 
 		if (Yii::$app->request->get('delete') == 1) {
