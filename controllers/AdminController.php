@@ -10,7 +10,7 @@ use themroc\humhub\modules\iframe\widgets\AdminTabs;
 
 class AdminController extends Controller
 {
-	const MH_MIN_REL= '0.2.2';
+	const MH_MIN_REL= '0.2.3';
 
 	public $adminOnly= true;
 	public $isTabbed= true;
