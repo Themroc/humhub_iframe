@@ -4,11 +4,12 @@ namespace themroc\humhub\modules\iframe\widgets;
 
 use Yii;
 use yii\helpers\Url;
+use humhub\widgets\BaseMenu;
 
 /**
  * Iframes Administration Menu
  */
-class AdminTabs extends \humhub\widgets\BaseMenu
+class AdminTabs extends BaseMenu
 {
 	/**
 	 * @inheritdoc

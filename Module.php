@@ -6,13 +6,13 @@ use Yii;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use humhub\components\UrlManager;
-use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
+use humhub\modules\content\components\ContentContainerModule;
 
 use themroc\humhub\modules\iframe\Assets;
 
-class Module extends \humhub\modules\content\components\ContentContainerModule
+class Module extends ContentContainerModule
 {
 	/**
 	* @inheritdoc
@@ -38,13 +38,14 @@ class Module extends \humhub\modules\content\components\ContentContainerModule
 			foreach ($this->getFrames() as $frame) {
 				$url= $this->getSetting('url', $frame);
 				$url_reg= $this->getSetting('url_reg', $frame);
-				if (empty($url_reg)) {
+				if (empty($url_reg))
 					$this->settings->set($frame.'/url_reg', $url);
-				} else {
+				else
 					$this->settings->set($frame.'/url_guest', $url);
-				}
 				$this->settings->delete($frame.'/url');
 			}
+			$this->settings->set('//tabs', $this->settings->get('/frames'));
+			$this->settings->delete('/frames');
 			$this->settings->set('//version', 1);
 		}
 	}
@@ -66,9 +67,9 @@ class Module extends \humhub\modules\content\components\ContentContainerModule
 
 	public function getFrames ()
 	{
-		$frames= $this->settings->get('/frames');
-		if ($frames == null)
-			return [];
+		if ('' == $frames= $this->settings->get('//tabs'))
+			if ('' == $frames= $this->settings->get('/frames'))
+				return [];
 
 		return preg_split('!\s*/\s*!', $frames);
 	}
